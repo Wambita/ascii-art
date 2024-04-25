@@ -1,28 +1,22 @@
 package main
 
-// get the file
-// create a map function to map the ascii chars to the art in the banner
-// func to convert the input string to ascii
-// func to print the input in the form of ascii art
-// handle possible scenarios, new lines , spaces , chars that are not in the ascii table
-// handle errors
-// test the program
-
-// get the file
-// os / Readfile/ os.open then scanner.
-
 import (
 	"fmt"
-	"log"
+	"os"
 
-	asciiart "asciiart/openfile"
+	asciiart "asciiart/displayart"
 )
 
 func main() {
-	filePath := "shadow.txt"
-	lines, err := asciiart.OpenFile(filePath)
-	if err != nil {
-		log.Fatal(err)
+	filePath := "standard.txt"
+	if len(os.Args) != 2 {
+		fmt.Println(`usage: go run . "input string"`)
+		os.Exit(1)
 	}
-	fmt.Println(lines)
+	input := os.Args[1]
+	s, err := asciiart.DisplayArt(filePath, input)
+	if err != nil {
+		fmt.Printf("Error: %v", err)
+	}
+	fmt.Print(s)
 }
