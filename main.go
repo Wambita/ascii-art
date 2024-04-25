@@ -15,14 +15,14 @@ import (
 	"fmt"
 	"log"
 
-	asciiart "asciiart/openFile"
+	asciiart "asciiart/openfile"
 )
 
 func main() {
 	filePath := "shadow.txt"
-	content, err := asciiart.OpenFile(filePath)
+	lines, err := asciiart.OpenFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(content)
+	fmt.Println(lines)
 }
