@@ -7,8 +7,8 @@ import (
 )
 
 func DisplayArt(filePath, input string) (string, error) {
-	var b strings.Builder
-	//     
+	var b strings.Builder // saves on memory
+	//
 
 	// fetch the map and handle any errors
 	m, err := asciiart.MapFile(filePath)
@@ -33,7 +33,7 @@ func DisplayArt(filePath, input string) (string, error) {
 				if ok {
 					b.WriteString(s[i])
 				} else {
-					b.WriteString("character doesn't exist")
+					b.WriteString("?")
 				}
 
 			}

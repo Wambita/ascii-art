@@ -5,16 +5,14 @@ import (
 	"testing"
 )
 
+//checking if the MapFile function maps the runes correctly to their corresponding art 
 func TestMapFile(t *testing.T) {
-	m, err := MapFile("../standard.txt")
+	m, err := MapFile("../test.txt")
 	if err != nil {
 		panic(err)
 	}
 
-	// fmt.Println("A:", m['A'])
-	for _, line := range m['N'] {
+	for _, line := range m['A'] {
 		fmt.Println(line)
 	}
-
 }
-
