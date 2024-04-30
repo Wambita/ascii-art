@@ -30,8 +30,9 @@ func TestDisplayArt(t *testing.T) {
 		if err != nil {
 			t.Errorf("Error %s", err)
 		}
+		os.WriteFile("test2.txt", []byte(output), 0o644)
 		if output != test.expected {
-			os.WriteFile("test2.txt", []byte(output), 0o644)
+			os.WriteFile("test3.txt", []byte(output), 0o644)
 			t.Errorf("DisplayArt(%s), expexted(\n%s\n), got(\n%s\n)", test.input, test.expected, output)
 		}
 	}

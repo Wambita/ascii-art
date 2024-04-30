@@ -5,9 +5,9 @@ import (
 	"testing"
 )
 
-//checking if the MapFile function maps the runes correctly to their corresponding art 
+// checking if the MapFile function maps the runes correctly to their corresponding art
 func TestMapFile(t *testing.T) {
-	m, err := MapFile("../test.txt")
+	m, err := MapFile("../standard.txt")
 	if err != nil {
 		panic(err)
 	}
