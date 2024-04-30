@@ -33,6 +33,10 @@ func main() {
 
 	}
 	input := os.Args[1]
+	// check if char is printable
+	if !asciiart.IsPrintable(input) {
+		fmt.Println("unprintable characters present")
+	}
 	s, err := asciiart.DisplayArt(filePath, input)
 	if err != nil {
 		fmt.Printf("Error: %v", err)

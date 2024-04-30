@@ -1,6 +1,7 @@
 package asciiart
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -35,5 +36,23 @@ func TestDisplayArt(t *testing.T) {
 			os.WriteFile("test3.txt", []byte(output), 0o644)
 			t.Errorf("DisplayArt(%s), expexted(\n%s\n), got(\n%s\n)", test.input, test.expected, output)
 		}
+	}
+}
+
+func TestIsPrintable(t *testing.T) {
+	tests := []struct {
+		input string
+		want  bool
+	}{
+		{"apple\\banana", true},
+		{"apple\\nbanana", true},
+		{"apple\banana", false},
+		{"Hello, World!", true},
+		{"Hello\\World\\", false},
+	}
+
+	for _, test := range tests {
+		got := IsPrintable(test.input)
+		fmt.Printf("Input: %s, Got: %t, Want: %t\n", test.input, got, test.want)
 	}
 }
