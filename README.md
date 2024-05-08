@@ -1,4 +1,6 @@
-## ASCII-Art Generator README
+## ASCII-Art
+
+
 ### Overview
 
 The ASCII-Art program converts input text into a graphic representation using ASCII characters. It supports various fonts and special characters, including spaces, newlines, and punctuation. This tool is ideal for creating stylized text for use in command line applications, documentation, or simply for artistic purposes.
@@ -323,4 +325,4 @@ Contributions are welcome. Please adhere to the existing coding standards and in
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ### Author
-This project was build and maintained by  [shfana](https://learn.zone01kisumu.ke/git/shfana)
+This project was build and maintained by  [Wambita](https://github.com/Wambita)
