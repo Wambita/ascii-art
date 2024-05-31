@@ -56,7 +56,7 @@ go run . "Hello\n\nThere" | cat -e
 go run . "Hello" -shadow
 go run . "Hello" -thinkertoy
 
-
+```
 ### Installation
 
 Ensure that Go is installed on your system. You can install Go from the official Go website. Once Go is installed, you can clone and run the program directly from the source code.
