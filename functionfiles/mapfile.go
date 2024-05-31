@@ -1,14 +1,10 @@
 package asciiart
 
-import (
-	asciiart "asciiart/openfile"
-)
-
 func MapFile(filePath string) (map[rune][]string, error) {
 	asciiMap := make(map[rune][]string)
 	currentChar := ' '
 	// filePath := "standard.txt"
-	lines, err := asciiart.OpenFile(filePath)
+	lines, err := OpenFile(filePath)
 	if err != nil {
 		return nil, err
 	}

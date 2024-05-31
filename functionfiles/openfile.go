@@ -9,21 +9,20 @@ import (
 	"path/filepath"
 )
 
-func OpenFile(filePath string) ([]string, error) {
-	// Check if file exists
-	if _, err := os.Stat(filePath); err != nil {
-		if os.IsNotExist(err) {
-			return nil, fmt.Errorf("error: file does not exist")
-		}
-		return nil, fmt.Errorf("error: error checking file")
-	}
+func OpenFile(fileName string) ([]string, error) {
 	// open the file
-	ArtFile, err := os.Open(filePath)
+	ArtFile, err := os.Open(fileName)
 	if err != nil {
-		return nil, err
+		if os.IsNotExist(err) {
+			fmt.Println("File does not exist:", fileName)
+			ArtFile = GetFile(fileName)
+			os.Exit(0)
+		} else {
+			return nil, err
+		}
 	}
 
-	if filepath.Ext(filePath) != ".txt" {
+	if filepath.Ext(fileName) != ".txt" {
 		fmt.Println("Error: wrong file extension. use extension .txt")
 		return nil, err
 	}

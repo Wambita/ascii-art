@@ -4,14 +4,13 @@ import (
 	"fmt"
 	"os"
 
-	asciiart "asciiart/displayart"
+	asciiart "asciiart/functionfiles"
 )
 
 func main() {
 	var filePath string
 	if len(os.Args) == 1 || len(os.Args) > 3 {
-		fmt.Println(`usage: go run . "input string" or usage: go run . "input string " -font`)
-		return
+		fmt.Println("Usage: go run . [STRING] [BANNER]\n\nEX: go run . \"something\" <BANNER>")
 	}
 
 	if len(os.Args) == 2 {
@@ -20,23 +19,22 @@ func main() {
 
 	if len(os.Args) == 3 {
 		flag := os.Args[2]
+		filePath = "standard.txt"
 		switch flag {
-		case "-shadow", "-s", "-sw":
+		case "shadow", "sh", "Sh", "SHADOW":
 			filePath = "shadow.txt"
-		case "-thinkertoy", "-t", "T":
+		case "thinkertoy", "t", "T", "THINKERTOY":
 			filePath = "thinkertoy.txt"
+		case "standard", "Standard", "S", "s", "STANDARD":
+			filePath = "standard.txt"
 		default:
-			fmt.Println(`usage: go run . "input string " -font`)
+			fmt.Println("Usage: go run . [STRING] [BANNER]\n\nEX: go run . \"something\" <BANNER>")
 			return
 
 		}
 
 	}
 	input := os.Args[1]
-	// check if char is printable
-	if !asciiart.IsPrintable(input) {
-		fmt.Println("unprintable characters present")
-	}
 	s, err := asciiart.DisplayArt(filePath, input)
 	if err != nil {
 		fmt.Printf("Error: %v", err)

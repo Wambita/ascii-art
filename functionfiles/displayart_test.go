@@ -1,7 +1,6 @@
 package asciiart
 
 import (
-	"fmt"
 	"os"
 	"testing"
 )
@@ -22,7 +21,7 @@ func TestDisplayArt(t *testing.T) {
 	}{
 		{
 			"hello There 1 to 2!",
-			readFile("test1.txt"),
+			readFile("testfiles/test1.txt"),
 		},
 	}
 	for _, test := range test1 {
@@ -31,28 +30,10 @@ func TestDisplayArt(t *testing.T) {
 		if err != nil {
 			t.Errorf("Error %s", err)
 		}
-		os.WriteFile("test2.txt", []byte(output), 0o644)
+		os.WriteFile("testfiles/test2.txt", []byte(output), 0o644)
 		if output != test.expected {
 			os.WriteFile("test3.txt", []byte(output), 0o644)
 			t.Errorf("DisplayArt(%s), expexted(\n%s\n), got(\n%s\n)", test.input, test.expected, output)
 		}
-	}
-}
-
-func TestIsPrintable(t *testing.T) {
-	tests := []struct {
-		input string
-		want  bool
-	}{
-		{"apple\\banana", true},
-		{"apple\\nbanana", true},
-		{"apple\banana", false},
-		{"Hello, World!", true},
-		{"Hello\\World\\", false},
-	}
-
-	for _, test := range tests {
-		got := IsPrintable(test.input)
-		fmt.Printf("Input: %s, Got: %t, Want: %t\n", test.input, got, test.want)
 	}
 }

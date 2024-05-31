@@ -7,7 +7,7 @@ import (
 
 func TestOpenFile(t *testing.T) {
 	// test a valid file path :shadow.txt, standard.txt, thinkertoy.txt
-	filePath := "shadow.txt"
+	filePath := "testfiles/shadow.txt"
 	_, err := OpenFile(filePath)
 	if err != nil {
 		t.Errorf("Failed to open and read existing file: %v", err)
@@ -25,14 +25,14 @@ func TestNonExistentFile(t *testing.T) {
 
 func TestWrongExtension(t *testing.T) {
 	// file will only handle files with .txt extension
-	filePath := "image.png"
+	filePath := "testfiles/image.png"
 	if filepath.Ext(filePath) == ".txt" {
 		t.Errorf("error: file has .txt expected wrong file path")
 	}
 }
 
 func TestEmptyFile(t *testing.T) {
-	filePath := "empty.txt"
+	filePath := "testfiles/empty.txt"
 	_, err := OpenFile(filePath)
 	if err != nil {
 		t.Errorf("Failed to handle an empty file")

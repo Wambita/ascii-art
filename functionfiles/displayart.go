@@ -3,15 +3,12 @@ package asciiart
 import (
 	"fmt"
 	"strings"
-	"unicode"
-
-	asciiart "asciiart/mapfile"
 )
 
 func DisplayArt(filePath, input string) (string, error) {
 	var buildStr strings.Builder // saves on memory
 	// fetch the map and handle any errors
-	Asciimap, err := asciiart.MapFile(filePath)
+	Asciimap, err := MapFile(filePath)
 
 	if len(Asciimap) == 0 {
 		fmt.Println("Error: Character map is empty, please provide valid char map")
@@ -23,6 +20,10 @@ func DisplayArt(filePath, input string) (string, error) {
 	count := 0
 	words := strings.ReplaceAll(input, "\\n", "\n")
 	wordsSlice := strings.Split(words, "\n")
+
+	if IsNotPrintable(words) {
+		return "", nil
+	}
 
 	for _, word := range wordsSlice {
 		if word == "" {
@@ -47,18 +48,4 @@ func DisplayArt(filePath, input string) (string, error) {
 		}
 	}
 	return buildStr.String(), nil
-}
-
-func IsPrintable(input string) bool {
-	for i, val := range input {
-		if i < len(input)-1 && input[i] == '\\' {
-			if (input[i+1] == 't' || input[i+1] == 'a' || input[i+1] == 'b' || input[i+1] == 'v' || input[i+1] == 'f' || input[i+1] == 'r') && !(input[i+1] == 'n') {
-				return false
-			}
-		}
-		if !unicode.IsPrint(val) {
-			return false
-		}
-	}
-	return true
 }
