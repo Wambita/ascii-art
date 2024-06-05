@@ -14,9 +14,14 @@ func OpenFile(fileName string) ([]string, error) {
 	ArtFile, err := os.Open(fileName)
 	if err != nil {
 		if os.IsNotExist(err) {
-			fmt.Println("File does not exist:", fileName)
-			ArtFile = GetFile(fileName)
-			os.Exit(0)
+			if fileName == "standard.txt" || fileName == "shadow.txt" || fileName == "thinkertoy.txt" {
+				fmt.Println("File does not exist:", fileName)
+				GetFile(fileName)
+				os.Exit(0)
+			}
+			fmt.Println("invalid file name used")
+			return nil, err
+
 		} else {
 			return nil, err
 		}
