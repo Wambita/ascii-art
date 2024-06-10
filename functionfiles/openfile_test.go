@@ -34,7 +34,7 @@ func TestWrongExtension(t *testing.T) {
 func TestEmptyFile(t *testing.T) {
 	filePath := "testfiles/empty.txt"
 	_, err := OpenFile(filePath)
-	if err != nil {
+	if err == nil {
 		t.Errorf("Failed to handle an empty file")
 	}
 }

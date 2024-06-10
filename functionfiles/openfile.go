@@ -17,7 +17,7 @@ func OpenFile(fileName string) ([]string, error) {
 			if fileName == "standard.txt" || fileName == "shadow.txt" || fileName == "thinkertoy.txt" {
 				fmt.Println("File does not exist:", fileName)
 				GetFile(fileName)
-				os.Exit(0)
+				return nil, err
 			}
 			fmt.Println("invalid file name used")
 			return nil, err
@@ -30,6 +30,13 @@ func OpenFile(fileName string) ([]string, error) {
 	if filepath.Ext(fileName) != ".txt" {
 		fmt.Println("Error: wrong file extension. use extension .txt")
 		return nil, err
+	}
+	fileinfo, err := os.Stat(fileName)
+	if fileinfo.Size() == 0 {
+		return nil, fmt.Errorf("%q is empty", fileName)
+	}
+	if err != nil {
+		return nil, fmt.Errorf("error: %q", err)
 	}
 
 	defer ArtFile.Close()

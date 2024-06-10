@@ -34,12 +34,12 @@ func DisplayArt(filePath, input string) (string, error) {
 		} else {
 			// printing the art for each word/substring . Check if each char exists in the map
 			for i := 0; i < 8; i++ {
-				for _, c := range word {
-					s, ok := Asciimap[c]
+				for _, char := range word {
+					s, ok := Asciimap[char]
 					if ok {
 						buildStr.WriteString(s[i])
 					} else {
-						buildStr.WriteString("?")
+						return "", fmt.Errorf("error: character %c not found in map", char)
 					}
 
 				}
